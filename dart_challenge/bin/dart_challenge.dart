@@ -23,6 +23,8 @@ void main(List<String> arguments) {
   int? select = 0;
 
   do {
+    print("\n\n--------------------------\n\n");
+
     menu.forEach((element) {
       print(element);
     });
@@ -61,17 +63,12 @@ void main(List<String> arguments) {
             "Result of unit test 3: ${unit_test_3.checkPrimeNumber(inputUnitTest3)}");
         break;
       case 5:
-        print("your passwork:");
+        print("your password:");
         String? password = stdin.readLineSync() ?? "";
-        List<String> resultCheckPassword =
-            unit_test_4.validatePassword(password);
-        if (resultCheckPassword.isEmpty) {
-          print("your password OK!");
+        if (unit_test_4.validatePassword(password)) {
+          print("Your password valid!");
         } else {
-          print("problems:");
-          for (String element in resultCheckPassword) {
-            print(element);
-          }
+          print("Your password not vaild");
         }
         break;
       default:

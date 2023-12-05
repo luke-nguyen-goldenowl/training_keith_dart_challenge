@@ -43,27 +43,20 @@ void main() {
   group("unit test 4", () {
     test("input abc", () {
       String input = "abc";
-      List<String> actual = unit_test_4.validatePassword(input);
-      List<String> expected = [
-        "minimum 6 character",
-        "minimum 1 number",
-        "minimum 1 special character"
-      ];
-      expect(actual, expected);
+      bool actual = unit_test_4.validatePassword(input);
+      expect(actual, false);
     });
 
     test("input abc123", () {
       String input = "abc123";
-      List<String> actual = unit_test_4.validatePassword(input);
-      List<String> expected = ["minimum 1 special character"];
-      expect(actual, expected);
+      bool actual = unit_test_4.validatePassword(input);
+      expect(actual, false);
     });
 
     test("input abc123@", () {
       String input = "abc123@";
-      List<String> actual = unit_test_4.validatePassword(input);
-      List<String> expected = [];
-      expect(actual, expected);
+      bool actual = unit_test_4.validatePassword(input);
+      expect(actual, true);
     });
   });
 }
