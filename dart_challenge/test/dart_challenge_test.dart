@@ -1,5 +1,6 @@
 import 'package:dart_challenge/unit_test_1.dart' as unit_test_1;
 import 'package:dart_challenge/unit_test_2.dart' as unit_test_2;
+import 'package:dart_challenge/unit_test_3.dart' as unit_test_3;
 import 'package:test/test.dart';
 
 void main() {
@@ -26,5 +27,15 @@ void main() {
     List<int> expected = [1, 2, 3, 5, 8, 13];
 
     expect(actual, expected);
+  });
+
+  group("unit test 3", () {
+    test("input 15", () {
+      expect(unit_test_3.checkPrimeNumber(15), false);
+    });
+
+    test("input 23", () {
+      expect(unit_test_3.checkPrimeNumber(23), true);
+    });
   });
 }
