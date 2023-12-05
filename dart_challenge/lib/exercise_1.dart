@@ -1,7 +1,7 @@
 import 'dart:io';
 
 void exercise1() {
-  int? squareSize = int.parse(stdin.readLineSync()!);
+  int? squareSize = int.parse(stdin.readLineSync()??"0");
   String height = "|", weight = " ";
   for (int i = 1; i <= squareSize; i++) {
     height += "   |";
