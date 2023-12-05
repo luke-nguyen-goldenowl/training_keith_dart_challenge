@@ -1,6 +1,5 @@
 import 'package:dart_challenge/unit_test_1.dart' as unit_test_1;
 
-
 import 'package:test/test.dart';
 
 void main() {
@@ -8,8 +7,8 @@ void main() {
     test("input 20", () {
       List<int> expected = [1, 2, 4, 5, 10, 20];
       List<int> actual = unit_test_1.unitTest1(20);
-      final bool equal = ListEquality().equals(actual, expected);
-      expect(equal, true);
+
+      expect(actual, expected);
     });
 
     test("input 31", () {
