@@ -13,14 +13,17 @@ void rockPaperScissor() {
   do {
     print("Welcome to Rock, Paper, Scissors. \nType 'exit' to stop the game");
     print("Please choose Rock, Paper or Scissors: ");
-    yourChoose = stdin.readLineSync() ?? "exit".toLowerCase();
+    yourChoose = (stdin.readLineSync() ?? "exit").toLowerCase();
 
     if (!select.contains(yourChoose)) {
       print("please choose  Rock, Paper or Scissors or exit to stop the game");
       continue;
     }
 
+    if (yourChoose == "exit") break;
+
     myChoose = select[random.nextInt(3)];
+    print("my choose: $myChoose");
 
     if ((myChoose == "rock" && yourChoose == "paper") ||
         (myChoose == "paper" && yourChoose == "scissors") ||
@@ -28,12 +31,13 @@ void rockPaperScissor() {
       print('You Win!!');
       score++;
     } else if (myChoose != yourChoose) {
-      print("You Close!!");
+      print("You Lose!!");
       score--;
     } else {
-      print("draw!!");
+      print("Draw!!");
     }
+    print("\n");
   } while (yourChoose != "exit");
 
-  print("total score: $score");
+  print("total score: $score \n");
 }
