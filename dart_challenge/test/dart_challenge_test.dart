@@ -1,6 +1,7 @@
 import 'package:dart_challenge/unit_test_1.dart' as unit_test_1;
 import 'package:dart_challenge/unit_test_2.dart' as unit_test_2;
 import 'package:dart_challenge/unit_test_3.dart' as unit_test_3;
+import 'package:dart_challenge/unit_test_4.dart' as unit_test_4;
 import 'package:test/test.dart';
 
 void main() {
@@ -36,6 +37,33 @@ void main() {
 
     test("input 23", () {
       expect(unit_test_3.checkPrimeNumber(23), true);
+    });
+  });
+
+  group("unit test 4", () {
+    test("input abc", () {
+      String input = "abc";
+      List<String> actual = unit_test_4.validatePassword(input);
+      List<String> expected = [
+        "minimum 6 character",
+        "minimum 1 number",
+        "minimum 1 special character"
+      ];
+      expect(actual, expected);
+    });
+
+    test("input abc123", () {
+      String input = "abc123";
+      List<String> actual = unit_test_4.validatePassword(input);
+      List<String> expected = ["minimum 1 special character"];
+      expect(actual, expected);
+    });
+
+    test("input abc123@", () {
+      String input = "abc123@";
+      List<String> actual = unit_test_4.validatePassword(input);
+      List<String> expected = [];
+      expect(actual, expected);
     });
   });
 }
