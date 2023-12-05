@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dart_challenge/exercise_1.dart' as dart_challenge;
 import 'package:dart_challenge/unit_test_1.dart' as unit_test_1;
 import 'package:dart_challenge/unit_test_2.dart' as unit_test_2;
+import 'package:dart_challenge/unit_test_3.dart' as unit_test_3;
 import 'package:dart_challenge/unit_test_4.dart' as unit_test_4;
 
 void main(List<String> arguments) {
@@ -52,6 +53,12 @@ void main(List<String> arguments) {
           list2.add(int.parse(stdin.readLineSync() ?? "0"));
         }
         print("Result of unit test 2: ${unit_test_2.unitTest2(list1, list2)}");
+        break;
+      case 4:
+        print("your number:");
+        int? inputUnitTest3 = int.parse(stdin.readLineSync() ?? "0");
+        print(
+            "Result of unit test 3: ${unit_test_3.checkPrimeNumber(inputUnitTest3)}");
         break;
       case 5:
         print("your passwork:");
