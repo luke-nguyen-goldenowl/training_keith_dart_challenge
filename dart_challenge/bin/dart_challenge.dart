@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dart_challenge/exercise_1.dart' as dart_challenge;
+import 'package:dart_challenge/unit_test_1.dart' as unit_test_1;
 import 'package:dart_challenge/unit_test_2.dart' as unit_test_2;
 
 void main(List<String> arguments) {
@@ -30,6 +31,11 @@ void main(List<String> arguments) {
     switch (select) {
       case 1:
         dart_challenge.exercise1();
+        break;
+      case 2:
+        print("Divisor of:");
+        int? inputUnitTest1 = int.parse(stdin.readLineSync() ?? "0");
+        print(unit_test_1.unitTest1(inputUnitTest1));
         break;
       case 3:
         List<int> list1 = [], list2 = [];
