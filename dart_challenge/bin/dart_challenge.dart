@@ -32,8 +32,19 @@ void main(List<String> arguments) {
         dart_challenge.exercise1();
         break;
       case 3:
-         print(unit_test_2.unitTest2([1, 1, 2, 3, 5, 8, 89, 13, 21, 34, 55],
-      [1, 2, 3, 4, 5, 6, 10, 7, 8, 9, 11, 12, 13]));
+        List<int> list1 = [], list2 = [];
+        int? nL1, nL2;
+        print("number of elements in List 1:");
+        nL1 = int.parse(stdin.readLineSync() ?? "0");
+        for (int i = 0; i < nL1; i++) {
+          list1.add(int.parse(stdin.readLineSync() ?? "0"));
+        }
+        print("number of elements in List 2:");
+        nL2 = int.parse(stdin.readLineSync() ?? "0");
+        for (int i = 0; i < nL2; i++) {
+          list2.add(int.parse(stdin.readLineSync() ?? "0"));
+        }
+        print(unit_test_2.unitTest2(list1, list2));
         break;
       default:
         break;
