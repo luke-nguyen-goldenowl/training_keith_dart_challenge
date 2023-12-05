@@ -35,7 +35,7 @@ void main(List<String> arguments) {
       case 2:
         print("Divisor of:");
         int? inputUnitTest1 = int.parse(stdin.readLineSync() ?? "0");
-        print(unit_test_1.unitTest1(inputUnitTest1));
+        print("Result of unit test 1 ${unit_test_1.unitTest1(inputUnitTest1)}");
         break;
       case 3:
         List<int> list1 = [], list2 = [];
@@ -50,7 +50,7 @@ void main(List<String> arguments) {
         for (int i = 0; i < nL2; i++) {
           list2.add(int.parse(stdin.readLineSync() ?? "0"));
         }
-        print(unit_test_2.unitTest2(list1, list2));
+        print("Result of unit test 2: ${unit_test_2.unitTest2(list1, list2)}");
         break;
       default:
         break;
