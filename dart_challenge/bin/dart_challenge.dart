@@ -5,9 +5,9 @@ import 'package:dart_challenge/unit_test_1.dart' as unit_test_1;
 import 'package:dart_challenge/unit_test_2.dart' as unit_test_2;
 import 'package:dart_challenge/unit_test_3.dart' as unit_test_3;
 import 'package:dart_challenge/unit_test_4.dart' as unit_test_4;
-import 'package:dart_challenge/game_2.dart' as game_2;
 import 'package:dart_challenge/rock_paper_scissor.dart' as rock_paper_scissor;
-
+import 'package:dart_challenge/game_2.dart' as game_2;
+import 'package:dart_challenge/game_3.dart' as game_3;
 import 'package:dart_challenge/game_4.dart' as game_4;
 
 void main(List<String> arguments) {
@@ -80,6 +80,9 @@ void main(List<String> arguments) {
         break;
       case 7:
         game_2.game2();
+        break;
+      case 8:
+        game_3.game3();
         break;
       case 9:
         game_4.game4();
