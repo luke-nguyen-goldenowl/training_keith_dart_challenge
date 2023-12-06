@@ -8,6 +8,8 @@ import 'package:dart_challenge/unit_test_4.dart' as unit_test_4;
 import 'package:dart_challenge/game_2.dart' as game_2;
 import 'package:dart_challenge/rock_paper_scissor.dart' as rock_paper_scissor;
 
+import 'package:dart_challenge/game_4.dart' as game_4;
+
 void main(List<String> arguments) {
   const List<String> menu = [
     "0. Exit",
@@ -78,6 +80,9 @@ void main(List<String> arguments) {
         break;
       case 7:
         game_2.game2();
+        break;
+      case 9:
+        game_4.game4();
         break;
       default:
         break;
