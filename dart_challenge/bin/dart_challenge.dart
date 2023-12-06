@@ -5,6 +5,7 @@ import 'package:dart_challenge/unit_test_1.dart' as unit_test_1;
 import 'package:dart_challenge/unit_test_2.dart' as unit_test_2;
 import 'package:dart_challenge/unit_test_3.dart' as unit_test_3;
 import 'package:dart_challenge/unit_test_4.dart' as unit_test_4;
+import 'package:dart_challenge/rock_paper_scissor.dart' as rock_paper_scissor;
 
 void main(List<String> arguments) {
   const List<String> menu = [
@@ -68,8 +69,11 @@ void main(List<String> arguments) {
         if (unit_test_4.validatePassword(password)) {
           print("Your password valid!");
         } else {
-          print("Your password not vaild");
+          print("Your password not valid");
         }
+        break;
+      case 6:
+        rock_paper_scissor.rockPaperScissor();
         break;
       default:
         break;
