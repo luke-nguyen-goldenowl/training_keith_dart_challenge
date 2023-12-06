@@ -9,7 +9,6 @@ void game3() {
 
   String? yourChoose = "";
 
-  print(listNumber);
   do {
     print("\nWelcome to Cows and Bulls\nType 'exit' to stop the game");
     print("Please choose a four digit number:");
