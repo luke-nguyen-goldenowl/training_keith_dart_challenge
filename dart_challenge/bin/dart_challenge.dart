@@ -4,6 +4,7 @@ import 'package:dart_challenge/exercise_1.dart' as dart_challenge;
 import 'package:dart_challenge/unit_test_1.dart' as unit_test_1;
 import 'package:dart_challenge/unit_test_2.dart' as unit_test_2;
 import 'package:dart_challenge/unit_test_3.dart' as unit_test_3;
+import 'package:dart_challenge/rock_paper_scissor.dart' as rock_paper_scissor;
 
 void main(List<String> arguments) {
   const List<String> menu = [
@@ -58,6 +59,10 @@ void main(List<String> arguments) {
         int? inputUnitTest3 = int.parse(stdin.readLineSync() ?? "0");
         print(
             "Result of unit test 3: ${unit_test_3.checkPrimeNumber(inputUnitTest3)}");
+        break;
+      case 6:
+        rock_paper_scissor.rockPaperScissor();
+        break;
       default:
         break;
     }
