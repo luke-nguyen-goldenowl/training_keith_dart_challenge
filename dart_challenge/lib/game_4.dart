@@ -26,5 +26,5 @@ void game4() {
     print("");
   } while (numberChar != 0 && yourLetter != "EXIT");
   print(hint.join(" "));
-  print("Bingo!!!!");
+  if (yourLetter != "EXIT") print("Bingo!!!!");
 }
