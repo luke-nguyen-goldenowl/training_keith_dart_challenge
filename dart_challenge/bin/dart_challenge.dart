@@ -5,6 +5,7 @@ import 'package:dart_challenge/unit_test_1.dart' as unit_test_1;
 import 'package:dart_challenge/unit_test_2.dart' as unit_test_2;
 import 'package:dart_challenge/unit_test_3.dart' as unit_test_3;
 import 'package:dart_challenge/unit_test_4.dart' as unit_test_4;
+import 'package:dart_challenge/game_2.dart' as game_2;
 import 'package:dart_challenge/rock_paper_scissor.dart' as rock_paper_scissor;
 
 void main(List<String> arguments) {
@@ -74,6 +75,9 @@ void main(List<String> arguments) {
         break;
       case 6:
         rock_paper_scissor.rockPaperScissor();
+        break;
+      case 7:
+        game_2.game2();
         break;
       default:
         break;
