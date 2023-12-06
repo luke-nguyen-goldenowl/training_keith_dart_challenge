@@ -10,18 +10,19 @@ void game2() {
   do {
     print(
         "\nType exit to quit the game\nPlease choose a number between 0 and 100:");
-    select = stdin.readLineSync() ?? "exit";
+    select = (stdin.readLineSync() ?? "exit").toLowerCase();
 
-    if (select == "exit") continue;
+    var yourChoose = int.tryParse(select);
+    if (yourChoose == null) continue;
 
-    if (int.parse(select) == number) {
-      print("Bingo! You tried ${++count} times\n");
+    count++;
+    if (yourChoose == number) {
+      print("Bingo! You tried $count times\n");
       break;
-    } else if (int.parse(select) > number) {
+    } else if (yourChoose > number) {
       print("You are higher");
     } else {
       print("You are lower");
     }
-    count++;
   } while (select != "exit");
 }
