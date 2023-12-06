@@ -5,7 +5,7 @@ void game3() {
   int cows = 0, bulls = 0, attempts = 0;
   Random random = new Random();
   List<String> listNumber =
-      (random.nextInt(9999 - 1000) + 1000).toString().split("");
+      (random.nextInt(10000 - 1000) + 1000).toString().split("");
 
   String? yourChoose = "";
 
