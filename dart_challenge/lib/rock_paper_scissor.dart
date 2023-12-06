@@ -20,8 +20,6 @@ void rockPaperScissor() {
       continue;
     }
 
-    if (yourChoose == "exit") break;
-
     myChoose = select[random.nextInt(3)];
     print("my choose: $myChoose");
 
@@ -30,10 +28,10 @@ void rockPaperScissor() {
         (myChoose == "scissors" && yourChoose == "rock")) {
       print('You Win!!');
       score++;
-    } else if (myChoose != yourChoose) {
+    } else if (myChoose != yourChoose && yourChoose != "exit") {
       print("You Lose!!");
       score--;
-    } else {
+    } else if(yourChoose != "exit" ) {
       print("Draw!!");
     }
     print("\n");
