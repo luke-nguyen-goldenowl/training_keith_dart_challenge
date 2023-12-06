@@ -47,12 +47,29 @@ void main() {
       expect(actual, false);
     });
 
+    test("input ABC", () {
+      String input = "ABC";
+      bool actual = unit_test_4.validatePassword(input);
+      expect(actual, false);
+    });
+
     test("input abc123", () {
       String input = "abc123";
       bool actual = unit_test_4.validatePassword(input);
       expect(actual, false);
     });
 
+    test("input abC1W23", () {
+      String input = "abC1W23";
+      bool actual = unit_test_4.validatePassword(input);
+      expect(actual, false);
+    });
+
+    test("input ABC123@", () {
+      String input = "ABC123@";
+      bool actual = unit_test_4.validatePassword(input);
+      expect(actual, true);
+    });
     test("input abc123@", () {
       String input = "abc123@";
       bool actual = unit_test_4.validatePassword(input);
