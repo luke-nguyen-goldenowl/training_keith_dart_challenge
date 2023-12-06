@@ -15,7 +15,7 @@ void game2() {
     if (select == "exit") continue;
 
     if (int.parse(select) == number) {
-      print("Bingo! You tried $count times\n");
+      print("Bingo! You tried ${++count} times\n");
       break;
     } else if (int.parse(select) > number) {
       print("You are higher");
