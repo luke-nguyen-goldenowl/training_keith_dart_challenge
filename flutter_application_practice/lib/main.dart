@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,28 +47,25 @@ class MyAppState extends ChangeNotifier {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  Widget build(BuildContext context) {
+    return DrawerMenu(
+      screen: GeneratorPage(),
+      selectedIndex: 0,
+    );
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  var selectedIndex = 0;
+class DrawerMenu extends StatelessWidget {
+  const DrawerMenu(
+      {super.key, required this.screen, required this.selectedIndex});
+
+  final Widget screen;
+  final int selectedIndex;
 
   @override
   Widget build(BuildContext context) {
-    Widget page;
-    switch (selectedIndex) {
-      case 0:
-        page = GeneratorPage();
-        break;
-      case 1:
-        page = FavoritesPage();
-        break;
-      default:
-        throw UnimplementedError("no widget for $selectedIndex");
-    }
-
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         body: Row(
@@ -86,16 +85,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {
-                  setState(() {
-                    selectedIndex = value;
-                  });
+                  if (value == 1) {
+                    Route route = MaterialPageRoute(
+                        builder: (context) => FavoritesPage());
+                    Navigator.push(context, route);
+                  } else {
+                    Navigator.pop(context);
+                  }
                 },
               ),
             ),
             Expanded(
               child: Container(
                 color: Theme.of(context).colorScheme.primaryContainer,
-                child: page,
+                child: screen,
               ),
             ),
           ],
@@ -177,7 +180,7 @@ class BigCard extends StatelessWidget {
   }
 }
 
-class FavoritesPage extends StatelessWidget {
+class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
@@ -200,5 +203,12 @@ class FavoritesPage extends StatelessWidget {
           )
       ],
     );
+  }
+}
+
+class FavoritesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return DrawerMenu(screen: FavoritesScreen(), selectedIndex: 1);
   }
 }
