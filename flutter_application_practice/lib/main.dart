@@ -31,6 +31,7 @@ class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
 
   void getNext() {
+    histories.insert(0, current);
     current = WordPair.random();
     notifyListeners();
   }
@@ -45,6 +46,12 @@ class MyAppState extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  var histories = <WordPair>[];
+
+  // void toggleHistory() {
+  //   histories.add(current);
+  // }
 }
 
 class MyHomePage extends StatelessWidget {
@@ -125,6 +132,21 @@ class GeneratorPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          SizedBox(
+            height: 200,
+            child: ListView(
+              children: [
+                for (var pair in appState.histories)
+                  ListTile(
+                    leading: appState.favorites.contains(pair)
+                        ? Icon(Icons.favorite)
+                        : null,
+                    title: Text(pair.asCamelCase),
+                  )
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
           BigCard(pair: pair),
           SizedBox(height: 10),
           Row(
