@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-abstract class AppState {}
+// abstract class AppState {}
 
-class AppDataState extends AppState {
+class AppDataState {
   final WordPair current;
   final List<WordPair> favorites;
   final List<WordPair> histories;
@@ -27,11 +27,11 @@ class AppDataState extends AppState {
   }
 }
 
-class AppCubit extends Cubit<AppState> {
+class AppCubit extends Cubit<AppDataState> {
   AppCubit() : super(AppDataState(WordPair.random(), [], []));
 
   void getNext() {
-    AppDataState currentState = state as AppDataState;
+    AppDataState currentState = state;
     var histories = currentState.histories;
     histories.insert(0, currentState.current);
 
@@ -40,7 +40,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   void toggleFavorite() {
-    AppDataState currentState = state as AppDataState;
+    AppDataState currentState = state;
     var favorites = currentState.favorites;
     if (favorites.contains(currentState.current)) {
       favorites.remove(currentState.current);
@@ -51,7 +51,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   void toggleDeleteFavorite(var pair) {
-    AppDataState currentState = state as AppDataState;
+    AppDataState currentState = state;
     var favorites = currentState.favorites;
     favorites.remove(pair);
     emit(AppDataState(currentState.current, favorites, currentState.histories));
@@ -148,55 +148,51 @@ class GeneratorPage extends StatelessWidget {
     final appCubit = BlocProvider.of<AppCubit>(context);
 
     return Center(
-        child: BlocBuilder<AppCubit, AppState>(builder: (context, state) {
-      if (state is AppDataState) {
-        var pair = state.current;
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 200,
-              child: ListView(
-                children: [
-                  for (var pair in state.histories)
-                    ListTile(
-                      leading: state.favorites.contains(pair)
-                          ? Icon(Icons.favorite)
-                          : null,
-                      title: Text(pair.asCamelCase),
-                    )
-                ],
-              ),
-            ),
-            SizedBox(height: 10),
-            BigCard(pair: pair),
-            SizedBox(height: 10),
-            Row(
-              mainAxisSize: MainAxisSize.min,
+        child: BlocBuilder<AppCubit, AppDataState>(builder: (context, state) {
+      var pair = state.current;
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 200,
+            child: ListView(
               children: [
-                ElevatedButton.icon(
-                  onPressed: () {
-                    appCubit.toggleFavorite();
-                  },
-                  icon: Icon(state.favorites.contains(pair)
-                      ? Icons.favorite
-                      : Icons.favorite_border),
-                  label: Text('Like'),
-                ),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    appCubit.getNext();
-                  },
-                  child: Text('Next'),
-                ),
+                for (var pair in state.histories)
+                  ListTile(
+                    leading: state.favorites.contains(pair)
+                        ? Icon(Icons.favorite)
+                        : null,
+                    title: Text(pair.asCamelCase),
+                  )
               ],
             ),
-          ],
-        );
-      } else {
-        return Text('Unknown State');
-      }
+          ),
+          SizedBox(height: 10),
+          BigCard(pair: pair),
+          SizedBox(height: 10),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ElevatedButton.icon(
+                onPressed: () {
+                  appCubit.toggleFavorite();
+                },
+                icon: Icon(state.favorites.contains(pair)
+                    ? Icons.favorite
+                    : Icons.favorite_border),
+                label: Text('Like'),
+              ),
+              SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  appCubit.getNext();
+                },
+                child: Text('Next'),
+              ),
+            ],
+          ),
+        ],
+      );
     }));
   }
 }
@@ -233,37 +229,33 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appCubit = BlocProvider.of<AppCubit>(context);
-    return BlocBuilder<AppCubit, AppState>(builder: (context, state) {
-      if (state is AppDataState) {
-        // var pair = state.current;
-        if (state.favorites.isEmpty) {
-          return Center(
-            child: Text("No favorite yet."),
-          );
-        }
-        return ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text("You have ${state.favorites.length} favorites: "),
-            ),
-            for (var pair in state.favorites)
-              ListTile(
-                leading: Icon(Icons.favorite),
-                title: Text(pair.asCamelCase),
-                trailing: ElevatedButton.icon(
-                  onPressed: () {
-                    appCubit.toggleDeleteFavorite(pair);
-                  },
-                  icon: Icon(Icons.delete_forever_outlined),
-                  label: Text('Delete'),
-                ),
-              ),
-          ],
+    return BlocBuilder<AppCubit, AppDataState>(builder: (context, state) {
+      // var pair = state.current;
+      if (state.favorites.isEmpty) {
+        return Center(
+          child: Text("No favorite yet."),
         );
-      } else {
-        return Text('Unknown State');
       }
+      return ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Text("You have ${state.favorites.length} favorites: "),
+          ),
+          for (var pair in state.favorites)
+            ListTile(
+              leading: Icon(Icons.favorite),
+              title: Text(pair.asCamelCase),
+              trailing: ElevatedButton.icon(
+                onPressed: () {
+                  appCubit.toggleDeleteFavorite(pair);
+                },
+                icon: Icon(Icons.delete_forever_outlined),
+                label: Text('Delete'),
+              ),
+            ),
+        ],
+      );
     });
   }
 }
