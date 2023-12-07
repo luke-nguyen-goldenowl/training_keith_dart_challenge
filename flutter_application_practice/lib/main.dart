@@ -37,6 +37,13 @@ class AppCubit extends Cubit<AppState> {
     }
     emit(AppDataState(currentState.current, favorites, currentState.histories));
   }
+
+  void toggleDeleteFavorite(var pair) {
+    AppDataState currentState = state as AppDataState;
+    var favorites = currentState.favorites;
+    favorites.remove(pair);
+    emit(AppDataState(currentState.current, favorites, currentState.histories));
+  }
 }
 
 void main() {
@@ -213,15 +220,15 @@ class BigCard extends StatelessWidget {
 class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // final appCubit = BlocProvider.of<AppCubit>(context);
+    final appCubit = BlocProvider.of<AppCubit>(context);
     return BlocBuilder<AppCubit, AppState>(builder: (context, state) {
       if (state is AppDataState) {
+        // var pair = state.current;
         if (state.favorites.isEmpty) {
           return Center(
             child: Text("No favorite yet."),
           );
         }
-
         return ListView(
           children: [
             Padding(
@@ -232,7 +239,14 @@ class FavoritesScreen extends StatelessWidget {
               ListTile(
                 leading: Icon(Icons.favorite),
                 title: Text(pair.asCamelCase),
-              )
+                trailing: ElevatedButton.icon(
+                  onPressed: () {
+                    appCubit.toggleDeleteFavorite(pair);
+                  },
+                  icon: Icon(Icons.delete_forever_outlined),
+                  label: Text('Delete'),
+                ),
+              ),
           ],
         );
       } else {
