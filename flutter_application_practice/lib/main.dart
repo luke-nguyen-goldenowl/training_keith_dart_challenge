@@ -14,6 +14,17 @@ class AppDataState extends AppState {
   final List<WordPair> histories;
 
   AppDataState(this.current, this.favorites, this.histories);
+
+  AppDataState copyWith(
+      {WordPair? current,
+      List<WordPair>? favorites,
+      List<WordPair>? histories}) {
+    return AppDataState(
+      current ?? this.current,
+      favorites ?? this.favorites,
+      histories ?? this.histories,
+    );
+  }
 }
 
 class AppCubit extends Cubit<AppState> {
@@ -24,7 +35,8 @@ class AppCubit extends Cubit<AppState> {
     var histories = currentState.histories;
     histories.insert(0, currentState.current);
 
-    emit(AppDataState(WordPair.random(), currentState.favorites, histories));
+    emit(currentState.copyWith(
+        current: WordPair.random(), histories: histories));
   }
 
   void toggleFavorite() {
@@ -35,7 +47,7 @@ class AppCubit extends Cubit<AppState> {
     } else {
       favorites.add(currentState.current);
     }
-    emit(AppDataState(currentState.current, favorites, currentState.histories));
+    emit(currentState.copyWith(favorites: favorites));
   }
 
   void toggleDeleteFavorite(var pair) {
