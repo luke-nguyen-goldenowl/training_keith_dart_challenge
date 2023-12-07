@@ -1,8 +1,43 @@
-import 'dart:ui';
+// import 'dart:ui';
 
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+abstract class AppState {}
+
+class AppDataState extends AppState {
+  final WordPair current;
+  final List<WordPair> favorites;
+  final List<WordPair> histories;
+
+  AppDataState(this.current, this.favorites, this.histories);
+}
+
+class AppCubit extends Cubit<AppState> {
+  AppCubit() : super(AppDataState(WordPair.random(), [], []));
+
+  void getNext() {
+    AppDataState currentState = state as AppDataState;
+    var histories = currentState.histories;
+    histories.insert(0, currentState.current);
+
+    emit(AppDataState(WordPair.random(), currentState.favorites, histories));
+  }
+
+  void toggleFavorite() {
+    AppDataState currentState = state as AppDataState;
+    var favorites = currentState.favorites;
+    if (favorites.contains(currentState.current)) {
+      favorites.remove(currentState.current);
+    } else {
+      favorites.add(currentState.current);
+    }
+    emit(AppDataState(currentState.current, favorites, currentState.histories));
+  }
+}
 
 void main() {
   runApp(MyApp());
@@ -13,8 +48,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
+    return BlocProvider(
+      create: (context) => AppCubit(),
       child: MaterialApp(
         title: 'Namer App',
         theme: ThemeData(
@@ -25,33 +60,6 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-}
-
-class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
-
-  void getNext() {
-    histories.insert(0, current);
-    current = WordPair.random();
-    notifyListeners();
-  }
-
-  var favorites = <WordPair>[];
-
-  void toggleFavorite() {
-    if (favorites.contains(current)) {
-      favorites.remove(current);
-    } else {
-      favorites.add(current);
-    }
-    notifyListeners();
-  }
-
-  var histories = <WordPair>[];
-
-  // void toggleHistory() {
-  //   histories.add(current);
-  // }
 }
 
 class MyHomePage extends StatelessWidget {
@@ -118,59 +126,59 @@ class DrawerMenu extends StatelessWidget {
 class GeneratorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-    var pair = appState.current;
-
-    IconData icon;
-    if (appState.favorites.contains(pair)) {
-      icon = Icons.favorite;
-    } else {
-      icon = Icons.favorite_border;
-    }
+    final appCubit = BlocProvider.of<AppCubit>(context);
 
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 200,
-            child: ListView(
+        child: BlocBuilder<AppCubit, AppState>(builder: (context, state) {
+      if (state is AppDataState) {
+        var pair = state.current;
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 200,
+              child: ListView(
+                children: [
+                  for (var pair in state.histories)
+                    ListTile(
+                      leading: state.favorites.contains(pair)
+                          ? Icon(Icons.favorite)
+                          : null,
+                      title: Text(pair.asCamelCase),
+                    )
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            BigCard(pair: pair),
+            SizedBox(height: 10),
+            Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                for (var pair in appState.histories)
-                  ListTile(
-                    leading: appState.favorites.contains(pair)
-                        ? Icon(Icons.favorite)
-                        : null,
-                    title: Text(pair.asCamelCase),
-                  )
+                ElevatedButton.icon(
+                  onPressed: () {
+                    appCubit.toggleFavorite();
+                  },
+                  icon: Icon(state.favorites.contains(pair)
+                      ? Icons.favorite
+                      : Icons.favorite_border),
+                  label: Text('Like'),
+                ),
+                SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    appCubit.getNext();
+                  },
+                  child: Text('Next'),
+                ),
               ],
             ),
-          ),
-          SizedBox(height: 10),
-          BigCard(pair: pair),
-          SizedBox(height: 10),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ElevatedButton.icon(
-                onPressed: () {
-                  appState.toggleFavorite();
-                },
-                icon: Icon(icon),
-                label: Text('Like'),
-              ),
-              SizedBox(width: 10),
-              ElevatedButton(
-                onPressed: () {
-                  appState.getNext();
-                },
-                child: Text('Next'),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+          ],
+        );
+      } else {
+        return Text('Unknown State');
+      }
+    }));
   }
 }
 
@@ -205,26 +213,32 @@ class BigCard extends StatelessWidget {
 class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-    if (appState.favorites.isEmpty) {
-      return Center(
-        child: Text("No favorite yet."),
-      );
-    }
+    // final appCubit = BlocProvider.of<AppCubit>(context);
+    return BlocBuilder<AppCubit, AppState>(builder: (context, state) {
+      if (state is AppDataState) {
+        if (state.favorites.isEmpty) {
+          return Center(
+            child: Text("No favorite yet."),
+          );
+        }
 
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text("You have ${appState.favorites.length} favorites: "),
-        ),
-        for (var pair in appState.favorites)
-          ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text(pair.asCamelCase),
-          )
-      ],
-    );
+        return ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text("You have ${state.favorites.length} favorites: "),
+            ),
+            for (var pair in state.favorites)
+              ListTile(
+                leading: Icon(Icons.favorite),
+                title: Text(pair.asCamelCase),
+              )
+          ],
+        );
+      } else {
+        return Text('Unknown State');
+      }
+    });
   }
 }
 
