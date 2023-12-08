@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
 
 class ItemListWidget extends StatelessWidget {
-  const ItemListWidget(
-      {super.key,
-      required this.title,
-      required this.icon,
-      required this.describe});
+  const ItemListWidget({super.key, this.content});
 
-  final dynamic title, icon, describe;
+  final dynamic content;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
         onTap: () {
-          print("press $title");
+          print("press ${content.title}");
         },
         leading: Icon(
-          icon,
+          content.icon,
           color: Colors.black38,
         ),
         title: Text(
-          title,
+          content.title,
           style: const TextStyle(fontWeight: FontWeight.w500),
         ),
         subtitle: Container(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
           child: Text(
-            describe,
+            content.describe,
             style: const TextStyle(color: Colors.black45),
           ),
         ));

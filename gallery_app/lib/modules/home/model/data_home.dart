@@ -64,6 +64,6 @@ List<DataHome> listData = [
     title: "Stack & Align",
     icon: Icons.copy,
     describe:
-        'BA widget that positions its children relative to the edges of its box',
+        'A widget that positions its children relative to the edges of its box',
   ),
 ];

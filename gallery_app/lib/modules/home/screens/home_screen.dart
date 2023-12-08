@@ -27,8 +27,9 @@ class MyHomePage extends StatelessWidget {
       ),
       body: ListView(
         children: listData
-            .map((e) => ItemListWidget(
-                title: e.title, icon: e.icon, describe: e.describe))
+            .map((data) => ItemListWidget(
+                  content: data,
+                ))
             .toList(),
       ),
     );
