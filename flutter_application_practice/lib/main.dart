@@ -31,30 +31,26 @@ class AppCubit extends Cubit<AppDataState> {
   AppCubit() : super(AppDataState(WordPair.random(), [], []));
 
   void getNext() {
-    AppDataState currentState = state;
-    var histories = currentState.histories;
-    histories.insert(0, currentState.current);
+    var histories = state.histories;
+    histories.insert(0, state.current);
 
-    emit(currentState.copyWith(
-        current: WordPair.random(), histories: histories));
+    emit(state.copyWith(current: WordPair.random(), histories: histories));
   }
 
   void toggleFavorite() {
-    AppDataState currentState = state;
-    var favorites = currentState.favorites;
-    if (favorites.contains(currentState.current)) {
-      favorites.remove(currentState.current);
+    var favorites = state.favorites;
+    if (favorites.contains(state.current)) {
+      favorites.remove(state.current);
     } else {
-      favorites.add(currentState.current);
+      favorites.add(state.current);
     }
-    emit(currentState.copyWith(favorites: favorites));
+    emit(state.copyWith(favorites: favorites));
   }
 
   void toggleDeleteFavorite(var pair) {
-    AppDataState currentState = state;
-    var favorites = currentState.favorites;
+    var favorites = state.favorites;
     favorites.remove(pair);
-    emit(AppDataState(currentState.current, favorites, currentState.histories));
+    emit(AppDataState(state.current, favorites, state.histories));
   }
 }
 
@@ -153,16 +149,23 @@ class GeneratorPage extends StatelessWidget {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          Container(
+            alignment: Alignment.center,
             height: 200,
             child: ListView(
               children: [
                 for (var pair in state.histories)
-                  ListTile(
-                    leading: state.favorites.contains(pair)
-                        ? Icon(Icons.favorite)
-                        : null,
-                    title: Text(pair.asCamelCase),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(state.favorites.contains(pair)
+                          ? Icons.favorite
+                          : null),
+                      Text(
+                        pair.asCamelCase,
+                        style: TextStyle(fontSize: 20),
+                      )
+                    ],
                   )
               ],
             ),
