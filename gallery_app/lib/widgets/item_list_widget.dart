@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gallery_app/modules/home/model/data_home.dart';
 
 class ItemListWidget extends StatelessWidget {
-  const ItemListWidget({super.key, this.content});
+  const ItemListWidget({super.key, required this.content});
 
-  final dynamic content;
+  final DataHome content;
 
   @override
   Widget build(BuildContext context) {
