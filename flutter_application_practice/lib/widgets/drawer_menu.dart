@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter_application_practice/main.dart';
 
-import '../screens/favorites_screen.dart';
+import '../modules/favorites/screens/favorites_screen.dart';
 
 class DrawerMenu extends StatelessWidget {
   const DrawerMenu(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_practice/modules/favorites/cubit/favorite_cubit.dart';
+import 'package:flutter_application_practice/modules/home/cubit/home_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import './screens/home_screen.dart';
-import './cubit/app_cubit.dart';
+import 'modules/home/screens/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,8 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeCubit>(create: (context) => HomeCubit()),
+        BlocProvider<FavoriteCubit>(create: (context) => FavoriteCubit())
+      ],
       child: MaterialApp(
         title: 'Namer App',
         theme: ThemeData(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/drawer_menu.dart';
-import '../widgets/generator_page.dart';
+import '../../../widgets/drawer_menu.dart';
+import '../../../widgets/generator_page.dart';
 
 class MyHomeScreen extends StatelessWidget {
   @override
