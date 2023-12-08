@@ -50,7 +50,7 @@ class AppCubit extends Cubit<AppDataState> {
   void toggleDeleteFavorite(var pair) {
     var favorites = state.favorites;
     favorites.remove(pair);
-    emit(AppDataState(state.current, favorites, state.histories));
+    emit(state.copyWith(favorites: favorites));
   }
 }
 
