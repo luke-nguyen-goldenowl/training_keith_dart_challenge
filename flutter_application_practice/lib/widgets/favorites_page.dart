@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_practice/modules/favorites/cubit/favorite_cubit.dart';
 import 'package:flutter_application_practice/modules/favorites/models/favorite_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../cubit/app_cubit.dart';
-import '../cubit/app_data_state_cubit.dart';
 
 class FavoritesPage extends StatelessWidget {
   @override

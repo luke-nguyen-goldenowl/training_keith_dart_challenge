@@ -4,8 +4,6 @@ import 'package:flutter_application_practice/modules/favorites/models/favorite_s
 import 'package:flutter_application_practice/modules/home/cubit/home_cubit.dart';
 import 'package:flutter_application_practice/modules/home/models/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../cubit/app_cubit.dart';
-import '../cubit/app_data_state_cubit.dart';
 import './big_card.dart';
 
 class GeneratorPage extends StatelessWidget {
