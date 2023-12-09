@@ -10,7 +10,7 @@ class ItemListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
         onTap: () {
-          print("press ${content.title}");
+          Navigator.pushNamed(context, content.routeName);
         },
         leading: Icon(
           content.icon,

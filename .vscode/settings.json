@@ -1,0 +1,11 @@
+{
+    "cSpell.words": [
+        "Cupertinao"
+    ],
+
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "dart.previewFlutterUiGuides": true
+}
