@@ -11,7 +11,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 0, 110, 255),
+        backgroundColor: const Color.fromARGB(255, 0, 110, 255),
         title: const Text(
           "My widget",
           style: TextStyle(
