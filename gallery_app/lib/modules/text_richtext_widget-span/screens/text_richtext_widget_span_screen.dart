@@ -64,6 +64,7 @@ class GoogleRichText extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 backgroundColor: Color.fromARGB(255, 245, 227, 233),
                 height: 1.5,
+                fontFamily: "Blinker",
               )),
           TextSpan(
               text: "o",
@@ -73,6 +74,7 @@ class GoogleRichText extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 backgroundColor: Color.fromARGB(255, 211, 124, 153),
                 height: 1.5,
+                fontFamily: "Blinker",
               )),
           TextSpan(
               text: "g",
