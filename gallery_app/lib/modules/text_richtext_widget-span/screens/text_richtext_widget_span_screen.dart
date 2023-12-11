@@ -12,10 +12,10 @@ class TextRichTextSpanScreen extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
         ),
-        body: Column(
+        body: const Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text(
+            Text(
               "Creates a text widget. If the [style] argument is null, the text will use the style from the...",
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
@@ -26,85 +26,9 @@ class TextRichTextSpanScreen extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            const NumberText(),
-            const NumberRichText(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  // padding: const EdgeInsets.symmetric(vertical: 0),
-                  color: Colors.pink[100],
-                  child: const Text(
-                    "G",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 35,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  color: Colors.pink[50],
-                  child: const Text(
-                    "o",
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  color: Colors.pink[200],
-                  child: const Text(
-                    "o",
-                    style: TextStyle(
-                      color: Colors.yellow,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                  // padding: const EdgeInsets.symmetric(vertical: 0),
-                  color: Colors.pink[100],
-                  child: const Text(
-                    "g",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 35,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  color: Colors.pink[50],
-                  child: const Text(
-                    "I",
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                  // padding: const EdgeInsets.symmetric(vertical: 0),
-                  color: Colors.pink[100],
-                  child: const Text(
-                    "e",
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 35,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ],
-            )
+            NumberWidgetSpanText(),
+            NumberRichText(),
+            GoogleRichText()
           ],
         ),
       ),
@@ -112,51 +36,123 @@ class TextRichTextSpanScreen extends StatelessWidget {
   }
 }
 
-class NumberText extends StatelessWidget {
-  const NumberText({
+class GoogleRichText extends StatelessWidget {
+  const GoogleRichText({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          "First",
-          textAlign: TextAlign.center,
+    return RichText(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        text: TextSpan(
+            style: DefaultTextStyle.of(context).style,
+            children: const <TextSpan>[
+          TextSpan(
+              text: "G",
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 40,
+                backgroundColor: Color.fromARGB(255, 255, 196, 217),
+                height: 0,
+              )),
+          TextSpan(
+              text: "o",
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                backgroundColor: Color.fromARGB(255, 245, 227, 233),
+                height: 1.5,
+                fontFamily: "Blinker",
+              )),
+          TextSpan(
+              text: "o",
+              style: TextStyle(
+                color: Colors.yellow,
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                backgroundColor: Color.fromARGB(255, 211, 124, 153),
+                height: 1.5,
+                fontFamily: "Blinker",
+              )),
+          TextSpan(
+              text: "g",
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 40,
+                backgroundColor: Color.fromARGB(255, 255, 196, 217),
+                height: 0,
+              )),
+          TextSpan(
+              text: "l",
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                backgroundColor: Color.fromARGB(255, 245, 227, 233),
+                height: 1.5,
+              )),
+          TextSpan(
+              text: "e",
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 40,
+                backgroundColor: Color.fromARGB(255, 255, 196, 217),
+                height: 0,
+              )),
+        ]));
+  }
+}
+
+class NumberWidgetSpanText extends StatelessWidget {
+  const NumberWidgetSpanText({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(children: [
+        const TextSpan(
+          text: 'First ',
           style: TextStyle(
-            fontWeight: FontWeight.w500,
             fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            decoration: TextDecoration.none,
           ),
         ),
-        const Icon(
+        const WidgetSpan(
+            child: Icon(
           Icons.arrow_forward,
           color: Colors.red,
-        ),
-        const Text(
-          "second ",
-          textAlign: TextAlign.center,
+        )),
+        TextSpan(
+          text: 'second ',
           style: TextStyle(
-            fontSize: 30,
-            color: Colors.grey,
+            fontSize: 35,
+            // fontWeight: FontWeight.bold,
+            color: Colors.grey[500],
+            decoration: TextDecoration.none,
           ),
         ),
-        Container(
+        WidgetSpan(
+            child: Container(
           height: 100,
           width: 100,
-          color: Colors.orange,
-        ),
-        const Text(
-          " third",
-          textAlign: TextAlign.center,
+          color: Colors.amber[700],
+        )),
+        TextSpan(
+          text: ' third',
           style: TextStyle(
-            fontSize: 25,
-            color: Colors.grey,
+            fontSize: 35,
+            // fontWeight: FontWeight.bold,
+            color: Colors.grey[500],
+            decoration: TextDecoration.none,
           ),
-        )
-      ],
+        ),
+      ]),
     );
   }
 }
@@ -189,7 +185,8 @@ class NumberRichText extends StatelessWidget {
                 color: Colors.black,
                 decoration: TextDecoration.underline,
                 decorationStyle: TextDecorationStyle.solid,
-                decorationColor: Colors.black),
+                decorationColor: Colors.black,
+                fontStyle: FontStyle.italic),
           ),
           TextSpan(
             text: 'Three Four ',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gallery_app/configs/routes/routes_name.dart';
 import 'package:gallery_app/modules/button/screens/button_screen.dart';
 import 'package:gallery_app/modules/container_decoration/screens/container_decoration_screen.dart';
 import 'package:gallery_app/modules/cupertino/screens/cupertino_screen.dart';
@@ -14,30 +15,30 @@ import 'package:gallery_app/modules/wrap_chip/screens/wrap_chip_screen.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings setting) {
   switch (setting.name) {
-    case "/":
+    case RoutesName.home:
       return MaterialPageRoute(builder: (_) => const MyHomePage());
-    case "/button":
+    case RoutesName.button:
       return MaterialPageRoute(builder: (_) => const ButtonScreen());
-    case "/container":
+    case RoutesName.container:
       return MaterialPageRoute(
           builder: (_) => const ContainerDecorationScreen());
-    case "/cupertino":
+    case RoutesName.cupertino:
       return MaterialPageRoute(builder: (_) => const CupertinoScreen());
-    case "/custom_box_shape":
+    case RoutesName.customBoxShape:
       return MaterialPageRoute(builder: (_) => const CustomBoxShapeScreen());
-    case "/image_title_app_bar":
+    case RoutesName.imageTitleAppBar:
       return MaterialPageRoute(builder: (_) => const ImageTitleAppBarScreen());
-    case "/row_column_expanded":
+    case RoutesName.rowColumnExpanded:
       return MaterialPageRoute(builder: (_) => const RowColumnExpandedScreen());
-    case "/scaffold":
+    case RoutesName.scaffold:
       return MaterialPageRoute(builder: (_) => const ScaffoldScreen());
-    case "/stack_align":
+    case RoutesName.stackAlign:
       return MaterialPageRoute(builder: (_) => const StackAlignScreen());
-    case "/text_field":
+    case RoutesName.textField:
       return MaterialPageRoute(builder: (_) => const TextFieldScreen());
-    case "/wrap_chip":
+    case RoutesName.wrapChip:
       return MaterialPageRoute(builder: (_) => const WrapChipScreen());
-    case "/text_richtext_span":
+    case RoutesName.textRichTextSpan:
       return MaterialPageRoute(builder: (_) => const TextRichTextSpanScreen());
     default:
       break;
