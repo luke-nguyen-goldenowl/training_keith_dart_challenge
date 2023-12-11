@@ -26,7 +26,7 @@ class TextRichTextSpanScreen extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            NumberText(),
+            NumberWidgetSpanText(),
             NumberRichText(),
             GoogleRichText()
           ],
@@ -105,51 +105,54 @@ class GoogleRichText extends StatelessWidget {
   }
 }
 
-class NumberText extends StatelessWidget {
-  const NumberText({
+class NumberWidgetSpanText extends StatelessWidget {
+  const NumberWidgetSpanText({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          "First",
-          textAlign: TextAlign.center,
+    return RichText(
+      text: TextSpan(children: [
+        const TextSpan(
+          text: 'First ',
           style: TextStyle(
-            fontWeight: FontWeight.w500,
             fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            decoration: TextDecoration.none,
           ),
         ),
-        const Icon(
+        const WidgetSpan(
+            child: Icon(
           Icons.arrow_forward,
           color: Colors.red,
-        ),
-        const Text(
-          "second ",
-          textAlign: TextAlign.center,
+        )),
+        TextSpan(
+          text: 'second ',
           style: TextStyle(
-            fontSize: 30,
-            color: Colors.grey,
+            fontSize: 35,
+            // fontWeight: FontWeight.bold,
+            color: Colors.grey[500],
+            decoration: TextDecoration.none,
           ),
         ),
-        Container(
+        WidgetSpan(
+            child: Container(
           height: 100,
           width: 100,
-          color: Colors.orange,
-        ),
-        const Text(
-          " third",
-          textAlign: TextAlign.center,
+          color: Colors.amber[700],
+        )),
+        TextSpan(
+          text: ' third',
           style: TextStyle(
-            fontSize: 30,
-            color: Colors.grey,
+            fontSize: 35,
+            // fontWeight: FontWeight.bold,
+            color: Colors.grey[500],
+            decoration: TextDecoration.none,
           ),
-        )
-      ],
+        ),
+      ]),
     );
   }
 }
@@ -182,7 +185,8 @@ class NumberRichText extends StatelessWidget {
                 color: Colors.black,
                 decoration: TextDecoration.underline,
                 decorationStyle: TextDecorationStyle.solid,
-                decorationColor: Colors.black),
+                decorationColor: Colors.black,
+                fontStyle: FontStyle.italic),
           ),
           TextSpan(
             text: 'Three Four ',
