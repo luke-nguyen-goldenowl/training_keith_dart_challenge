@@ -12,10 +12,10 @@ class TextRichTextSpanScreen extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
         ),
-        body: Column(
+        body: const Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text(
+            Text(
               "Creates a text widget. If the [style] argument is null, the text will use the style from the...",
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
@@ -26,89 +26,80 @@ class TextRichTextSpanScreen extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            const NumberText(),
-            const NumberRichText(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  // padding: const EdgeInsets.symmetric(vertical: 0),
-                  color: Colors.pink[100],
-                  child: const Text(
-                    "G",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 35,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  color: Colors.pink[50],
-                  child: const Text(
-                    "o",
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  color: Colors.pink[200],
-                  child: const Text(
-                    "o",
-                    style: TextStyle(
-                      color: Colors.yellow,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                  // padding: const EdgeInsets.symmetric(vertical: 0),
-                  color: Colors.pink[100],
-                  child: const Text(
-                    "g",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 35,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  color: Colors.pink[50],
-                  child: const Text(
-                    "I",
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                  // padding: const EdgeInsets.symmetric(vertical: 0),
-                  color: Colors.pink[100],
-                  child: const Text(
-                    "e",
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 35,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ],
-            )
+            NumberText(),
+            NumberRichText(),
+            GoogleRichText()
           ],
         ),
       ),
     );
+  }
+}
+
+class GoogleRichText extends StatelessWidget {
+  const GoogleRichText({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        text: TextSpan(
+            style: DefaultTextStyle.of(context).style,
+            children: const <TextSpan>[
+          TextSpan(
+              text: "G",
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 40,
+                backgroundColor: Color.fromARGB(255, 255, 196, 217),
+                height: 0,
+              )),
+          TextSpan(
+              text: "o",
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                backgroundColor: Color.fromARGB(255, 245, 227, 233),
+                height: 1.5,
+              )),
+          TextSpan(
+              text: "o",
+              style: TextStyle(
+                color: Colors.yellow,
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                backgroundColor: Color.fromARGB(255, 211, 124, 153),
+                height: 1.5,
+              )),
+          TextSpan(
+              text: "g",
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 40,
+                backgroundColor: Color.fromARGB(255, 255, 196, 217),
+                height: 0,
+              )),
+          TextSpan(
+              text: "l",
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                backgroundColor: Color.fromARGB(255, 245, 227, 233),
+                height: 1.5,
+              )),
+          TextSpan(
+              text: "e",
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 40,
+                backgroundColor: Color.fromARGB(255, 255, 196, 217),
+                height: 0,
+              )),
+        ]));
   }
 }
 
@@ -152,7 +143,7 @@ class NumberText extends StatelessWidget {
           " third",
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 25,
+            fontSize: 30,
             color: Colors.grey,
           ),
         )
