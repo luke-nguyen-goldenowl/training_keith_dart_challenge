@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env: 
-      working-directory: gallery_app/android
+      working-directory: /home/runner/work/training_keith_dart_challenge/training_keith_dart_challenge/gallery_app/android
 
     steps:
       - uses: actions/checkout@v3
