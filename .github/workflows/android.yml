@@ -43,5 +43,5 @@ jobs:
         
       - name: Distribute firebase
         working-directory: ${{env.working-directory}}
-        run: fastlane distribute
+        run: bundle exec fastlane distribute
      
