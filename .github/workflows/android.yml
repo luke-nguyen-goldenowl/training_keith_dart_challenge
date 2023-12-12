@@ -7,10 +7,16 @@ on:
     branches: [ "develop" ]
 
 jobs:
+
+
   build:
 
     name: Building and distributing app
     runs-on: ubuntu-latest
+
+    env: 
+      working-directory: gallery_app/android
+
     steps:
       - uses: actions/checkout@v3
 
@@ -20,14 +26,11 @@ jobs:
           java-version: '17'
 
       - name: Add secret
-        run: echo ${{secrets.FIREBASE_KEY}} | base64 -d > gallery_app/android/deploy_firebase_gallery-app-d2d7c-3e0b117a0f00.json
+        run: echo ${{secrets.FIREBASE_KEY}} | base64 -d > deploy_firebase_gallery-app-d2d7c-3e0b117a0f00.json
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
-        with: 
-          build-root-directory: gallert_app/android
-
-      
+        
       - name: Distribute firebase
-        run: cd gallery_app/android && fastlane distribute
+        run: fastlane distribute
      
