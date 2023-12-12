@@ -12,10 +12,10 @@ jobs:
   build:
 
     name: Building and distributing app
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     env: 
-      working-directory: /home/runner/work/training_keith_dart_challenge/training_keith_dart_challenge/gallery_app/android
+      working-directory: gallery_app/android
 
     steps:
       - uses: actions/checkout@v3
