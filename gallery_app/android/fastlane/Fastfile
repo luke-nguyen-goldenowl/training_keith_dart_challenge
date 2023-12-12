@@ -45,12 +45,12 @@ platform :android do
     # build_android_app is a built-in fastlane action.
     release = firebase_app_distribution(
         app: "1:334203700014:android:64d8c85e0269f15bfff0bf",
-        service_credentials_file: "E:/Project-2023-2024/INTERN/deploy_firebase_gallery-app-d2d7c-3e0b117a0f00.json",
+        service_credentials_file: "deploy_firebase_gallery-app-d2d7c-3e0b117a0f00.json",
         # testers: "luke.nguyen.goldenowl@gmail.com",
         groups:"tester",
         release_notes: "new features to test out!",
         android_artifact_type: "APK",
-        android_artifact_path: "E:/Project-2023-2024/INTERN/Dart/training_keith_dart_challenge/gallery_app/build/app/outputs/apk/release/app-release.apk"
+        android_artifact_path: "../build/app/outputs/apk/release/app-release.apk"
     )
   end
 end
