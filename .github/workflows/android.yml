@@ -24,6 +24,8 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
+        with: 
+          build-root-directory: gallert_app/android
 
       
       - name: Distribute firebase
