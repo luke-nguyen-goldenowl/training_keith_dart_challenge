@@ -25,6 +25,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Test
+        run: 
+          ruby --version
+
       - name: Add secret
         run: echo ${{secrets.FIREBASE_KEY}} | base64 -d > deploy_firebase_gallery-app-d2d7c-3e0b117a0f00.json
 
