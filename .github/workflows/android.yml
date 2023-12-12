@@ -47,8 +47,10 @@ jobs:
           
           echo ls root2
           ls ../../
+
+          flutter build
         
       - name: Distribute firebase
         working-directory: ${{env.working-directory}}
-        run: bundle exec fastlane distribute
+        run: fastlane distribute
      
