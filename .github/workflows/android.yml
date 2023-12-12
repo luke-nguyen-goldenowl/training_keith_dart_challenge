@@ -34,6 +34,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
         with:
+          dependency-graph: generate-and-submit
           build-root-directory: ${{env.working-directory}}
 
       - name: Test
@@ -47,8 +48,6 @@ jobs:
           
           echo ls root2
           ls ../../
-
-          flutter build
         
       - name: Distribute firebase
         working-directory: ${{env.working-directory}}
