@@ -38,8 +38,15 @@ jobs:
 
       - name: Test
         working-directory: ${{env.working-directory}}
-        run: 
+        run: |
           ls
+
+          echo ls root
+          ls ../
+
+          
+          echo ls root2
+          ls ../../
         
       - name: Distribute firebase
         working-directory: ${{env.working-directory}}
