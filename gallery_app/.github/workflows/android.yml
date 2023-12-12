@@ -19,8 +19,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+      - name: Add secret
+        run: echo ${{secrets.FIREBASE_KEY}} | base64 -d > android\deploy_firebase_gallery-app-d2d7c-3e0b117a0f00.json
+
+      # - name: Setup Gradle
+      #   uses: gradle/gradle-build-action@v2
 
       
       - name: Make gradlew executable
