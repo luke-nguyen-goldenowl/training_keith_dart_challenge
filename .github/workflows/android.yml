@@ -36,6 +36,8 @@ jobs:
         with:
           dependency-graph: generate-and-submit
           build-root-directory: ${{env.working-directory}}
+          cache-disabled: true
+          
 
       - name: Test
         working-directory: ${{env.working-directory}}
