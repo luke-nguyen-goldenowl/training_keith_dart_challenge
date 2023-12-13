@@ -65,5 +65,4 @@ flutter:
     - family: Blinker
       fonts:
         - asset: lib/assets/fonts/Blinker/Blinker-Bold.ttf
-  assets:
-    - .env
+
