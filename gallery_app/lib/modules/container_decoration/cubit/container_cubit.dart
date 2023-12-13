@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:gallery_app/modules/container_decoration/model/container_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
