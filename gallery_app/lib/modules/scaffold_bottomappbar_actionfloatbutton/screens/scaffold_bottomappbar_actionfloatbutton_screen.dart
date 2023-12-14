@@ -16,7 +16,7 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.grey[50],
         appBar: AppBar(
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
@@ -32,7 +32,9 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
               Container(
                 decoration: const BoxDecoration(
                     border: Border(
-                        bottom: BorderSide(color: Colors.grey, width: 1))),
+                        bottom: BorderSide(
+                            color: Color.fromARGB(255, 240, 232, 232),
+                            width: 1))),
                 child: Column(
                   children: [
                     Row(
@@ -40,6 +42,7 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
                       children: [
                         const Text("Float Action Button"),
                         Switch(
+                          activeColor: Colors.blue,
                           value: _floatActionButton,
                           onChanged: (value) {
                             setState(() {
@@ -54,6 +57,7 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
                       children: [
                         const Text("Notch"),
                         Switch(
+                          activeColor: Colors.blue,
                           value: _notch,
                           onChanged: (value) {
                             setState(() {
@@ -146,26 +150,30 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
           // color: Colors.white,
           surfaceTintColor: Colors.white,
           shape: _notch ? const CircularNotchedRectangle() : null,
-          child: const Row(
-            children: [
-              Icon(
-                Icons.line_weight_rounded,
-                color: Colors.black,
-                size: 30,
-              ),
-              SizedBox(width: 15),
-              Icon(
-                Icons.search,
-                color: Colors.black,
-                size: 30,
-              ),
-              SizedBox(width: 15),
-              Icon(
-                Icons.favorite,
-                color: Colors.black,
-                size: 30,
-              )
-            ],
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            height: 50,
+            child: const Row(
+              children: [
+                Icon(
+                  Icons.line_weight_rounded,
+                  color: Colors.black,
+                  size: 30,
+                ),
+                SizedBox(width: 15),
+                Icon(
+                  Icons.search,
+                  color: Colors.black,
+                  size: 30,
+                ),
+                SizedBox(width: 15),
+                Icon(
+                  Icons.favorite,
+                  color: Colors.black,
+                  size: 30,
+                )
+              ],
+            ),
           ),
         ),
       ),
