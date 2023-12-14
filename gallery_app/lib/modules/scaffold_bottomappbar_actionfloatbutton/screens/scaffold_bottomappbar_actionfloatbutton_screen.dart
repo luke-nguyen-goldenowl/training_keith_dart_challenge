@@ -142,11 +142,11 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
               )
             : null,
         floatingActionButtonLocation: _floatingActionButtonLocation,
-        bottomNavigationBar: const BottomAppBar(
+        bottomNavigationBar: BottomAppBar(
           // color: Colors.white,
           surfaceTintColor: Colors.white,
-          shape: CircularNotchedRectangle(),
-          child: Row(
+          shape: _notch ? const CircularNotchedRectangle() : null,
+          child: const Row(
             children: [
               Icon(
                 Icons.line_weight_rounded,
