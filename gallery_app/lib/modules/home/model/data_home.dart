@@ -38,7 +38,7 @@ List<DataHome> listData = [
         'RaisedButton, FlatButton, DropdownButton, FloatingActionButton, RawMaterialButton IconButton, InkWell,',
   ),
   DataHome(
-    routeName: RoutesName.container,
+    routeName: RoutesName.imageTitleAppBar,
     title: "List",
     icon: Icons.list,
     describe: 'Scrolling list layout',
