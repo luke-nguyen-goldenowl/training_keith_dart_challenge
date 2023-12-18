@@ -38,13 +38,13 @@ List<DataHome> listData = [
         'RaisedButton, FlatButton, DropdownButton, FloatingActionButton, RawMaterialButton IconButton, InkWell,',
   ),
   DataHome(
-    routeName: RoutesName.container,
+    routeName: RoutesName.customBoxShape,
     title: "List",
     icon: Icons.list,
     describe: 'Scrolling list layout',
   ),
   DataHome(
-    routeName: RoutesName.customBoxShape,
+    routeName: RoutesName.container,
     title: "Card",
     icon: Icons.view_carousel_outlined,
     describe: 'Cards with rounded corners and decoration,',
