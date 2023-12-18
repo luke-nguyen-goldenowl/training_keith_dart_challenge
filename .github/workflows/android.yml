@@ -47,25 +47,25 @@ jobs:
         with:
           cache: true
 
-      - name: Test
-        working-directory: ${{env.working-directory}}
-        run: |
-          echo
-          pwd
+      # - name: Test
+      #   working-directory: ${{env.working-directory}}
+      #   run: |
+      #     echo
+      #     pwd
 
-          echo
-          ls
+      #     echo
+      #     ls
 
-          echo
-          echo ls root
-          ls ../
+      #     echo
+      #     echo ls root
+      #     ls ../
 
           
       #     echo
       #     echo ls root2
       #     ls -R ../../
         
-      # - name: Distribute firebase
+      # - name: Distribute firebase with fastlane
       #   working-directory: ${{env.working-directory}}
       #   run: fastlane distribute
      
