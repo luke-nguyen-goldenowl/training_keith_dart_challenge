@@ -60,7 +60,7 @@ class RowColumnMenu extends StatelessWidget {
                     items: MainAxisSize.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
-                        child: Text(value.toString().split('.')[1]),
+                        child: Text(value.name),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -81,7 +81,7 @@ class RowColumnMenu extends StatelessWidget {
                     items: MainAxisAlignment.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
-                        child: Text(value.toString().split('.')[1]),
+                        child: Text(value.name),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -102,7 +102,7 @@ class RowColumnMenu extends StatelessWidget {
                     items: CrossAxisAlignment.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
-                        child: Text(value.toString().split('.')[1]),
+                        child: Text(value.name),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -123,7 +123,7 @@ class RowColumnMenu extends StatelessWidget {
                     items: VerticalDirection.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
-                        child: Text(value.toString().split('.')[1]),
+                        child: Text(value.name),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -144,7 +144,7 @@ class RowColumnMenu extends StatelessWidget {
                     items: TextDirection.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
-                        child: Text(value.toString().split('.')[1]),
+                        child: Text(value.name),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -165,7 +165,7 @@ class RowColumnMenu extends StatelessWidget {
                     items: TextBaseline.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
-                        child: Text(value.toString().split('.')[1]),
+                        child: Text(value.name),
                       );
                     }).toList(),
                     onChanged: (value) {
