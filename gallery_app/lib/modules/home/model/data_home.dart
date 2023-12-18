@@ -38,7 +38,7 @@ List<DataHome> listData = [
         'RaisedButton, FlatButton, DropdownButton, FloatingActionButton, RawMaterialButton IconButton, InkWell,',
   ),
   DataHome(
-    routeName: RoutesName.customBoxShape,
+    routeName: RoutesName.home,
     title: "List",
     icon: Icons.list,
     describe: 'Scrolling list layout',
@@ -57,7 +57,7 @@ List<DataHome> listData = [
         'A single fixed-height row that typically contains some text as well as a leading or trailing icon,',
   ),
   DataHome(
-    routeName: RoutesName.container,
+    routeName: RoutesName.home,
     title: "Alert",
     icon: Icons.tab,
     describe: 'Alerts, SnackBar & Tooltip',
@@ -87,5 +87,11 @@ List<DataHome> listData = [
     icon: Icons.copy,
     describe:
         'A widget that positions its children relative to the edges of its box',
+  ),
+  DataHome(
+    routeName: RoutesName.customBoxShape,
+    title: "Custom shape",
+    icon: Icons.star_outline,
+    describe: 'A ticket widget with custom shape',
   ),
 ];
