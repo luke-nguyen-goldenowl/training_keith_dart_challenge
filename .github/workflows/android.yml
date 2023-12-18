@@ -79,7 +79,7 @@ jobs:
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: 1:334203700014:android:64d8c85e0269f15bfff0bf
-          serviceCredentialsFileContent: ${{env.working-directory}}/deploy_firebase_gallery-app-d2d7c-3e0b117a0f00.json
+          serviceCredentialsFile: ${{env.working-directory}}/deploy_firebase_gallery-app-d2d7c-3e0b117a0f00.json
           groups: tester
           file: gallery_app/build/app/outputs/apk/release/app-release.apk
     
