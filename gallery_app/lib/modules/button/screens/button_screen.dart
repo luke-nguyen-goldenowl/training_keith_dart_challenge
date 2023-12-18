@@ -29,150 +29,160 @@ class ButtonScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(children: [
-              DropdownButton(
-                isExpanded: true,
-                items: ['Option 1', 'Option 2', 'Option 3'].map((value) {
-                  return DropdownMenuItem(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                hint: const Text("Dropdown"),
-                onChanged: (value) {
-                  print("option $value");
-                },
-              ),
-              DropdownButtonFormField(
-                onChanged: (value) {
-                  print("option $value");
-                },
-                items: ['Option 1', 'Option 2', 'Option 3'].map((value) {
-                  return DropdownMenuItem(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                hint: const Text("Dropdown Form Field"),
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  DropdownButton(
+                    isExpanded: true,
+                    items: ['Option 1', 'Option 2', 'Option 3'].map((value) {
+                      return DropdownMenuItem(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    hint: const Text("Dropdown"),
+                    onChanged: (value) {
+                      print("option $value");
+                    },
+                  ),
+                  DropdownButtonFormField(
+                    onChanged: (value) {
+                      print("option $value");
+                    },
+                    items: ['Option 1', 'Option 2', 'Option 3'].map((value) {
+                      return DropdownMenuItem(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    hint: const Text("Dropdown Form Field"),
+                  ),
+                  const SizedBox(height: 10),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.all(0),
+                          backgroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                          minimumSize: const Size(30, 30)),
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(40),
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text("Elevated Button"),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(40),
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    icon: const Icon(Icons.account_circle),
+                    label: const Text("Elevated Button Icon"),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(foregroundColor: Colors.blue),
+                    child: const Text("Text Button"),
+                  ),
+                  TextButton.icon(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(foregroundColor: Colors.blue),
+                    icon: const Icon(Icons.account_circle),
+                    label: const Text("Text Button Icon"),
+                  ),
+                  OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(40),
+                      foregroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    child: const Text("Outline Button "),
+                  ),
+                  OutlinedButton.icon(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(40),
+                      foregroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    icon: const Icon(Icons.account_circle),
+                    label: const Text("Outline Button Icon"),
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
                     padding: const EdgeInsets.all(0),
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    minimumSize: const Size(30, 30)),
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                  size: 30,
-                ),
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(40),
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
+                    width: double.infinity,
+                    child: CupertinoButton(
+                      color: Colors.grey,
+                      child: const Text("Cupertino Button"),
+                      onPressed: () {
+                        print("cupertino button");
+                      },
+                    ),
                   ),
-                ),
-                onPressed: () {},
-                child: const Text("Elevated Button"),
-              ),
-              ElevatedButton.icon(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(40),
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
+                  const SizedBox(height: 10),
+                  ClipPath(
+                    clipper: CustomButtonClip(),
+                    child: MaterialButton(
+                      height: 45,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      onPressed: () {},
+                      color: Colors.grey,
+                      child: const Text("Material Button"),
+                    ),
                   ),
-                ),
-                icon: const Icon(Icons.account_circle),
-                label: const Text("Elevated Button Icon"),
-              ),
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(foregroundColor: Colors.blue),
-                child: const Text("Text Button"),
-              ),
-              TextButton.icon(
-                onPressed: () {},
-                style: TextButton.styleFrom(foregroundColor: Colors.blue),
-                icon: const Icon(Icons.account_circle),
-                label: const Text("Text Button Icon"),
-              ),
-              OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(40),
-                  foregroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
+                  const SizedBox(height: 10),
+                  ClipPath(
+                    clipper: CustomButtonClip(),
+                    child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      onPressed: () {},
+                      color: Colors.grey,
+                      height: 45,
+                      child: const Text("Raw Material Button"),
+                    ),
                   ),
-                ),
-                child: const Text("Outline Button "),
-              ),
-              OutlinedButton.icon(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(40),
-                  foregroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
-                icon: const Icon(Icons.account_circle),
-                label: const Text("Outline Button Icon"),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                padding: const EdgeInsets.all(0),
-                width: double.infinity,
-                child: CupertinoButton(
-                  color: Colors.grey,
-                  child: const Text("Cupertino Button"),
-                  onPressed: () {
-                    print("cupertino button");
-                  },
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ClipPath(
-                  clipper: CustomButtonClip(),
-                  child: MaterialButton(
-                    onPressed: () {},
-                    color: Colors.grey,
-                    child: const Text("Material Button"),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ClipPath(
-                  clipper: CustomButtonClip(),
-                  child: MaterialButton(
-                    onPressed: () {},
-                    color: Colors.grey,
-                    child: const Text("Raw Material Button"),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              const SelectButtonCustom(),
-              IconButton.filled(
-                onPressed: () {},
-                icon: const Icon(Icons.add),
-                color: Colors.white,
-                style: IconButton.styleFrom(backgroundColor: Colors.blue),
-              )
-            ]),
+                  const SizedBox(height: 10),
+                  const SelectButtonCustom(),
+                  Center(
+                    child: IconButton.filled(
+                      onPressed: () {},
+                      icon: const Icon(Icons.add),
+                      color: Colors.white,
+                      style: IconButton.styleFrom(backgroundColor: Colors.blue),
+                    ),
+                  )
+                ]),
           ),
         ),
       ),
@@ -257,7 +267,7 @@ class CustomButtonClip extends CustomClipper<Path> {
 
     path.addRRect(RRect.fromRectAndRadius(
       Rect.fromLTWH(0, 0, size.width, size.height),
-      const Radius.circular(20),
+      const Radius.circular(15),
     ));
 
     final clipPath = Path();
@@ -280,6 +290,6 @@ class CustomButtonClip extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return false;
+    return true;
   }
 }
