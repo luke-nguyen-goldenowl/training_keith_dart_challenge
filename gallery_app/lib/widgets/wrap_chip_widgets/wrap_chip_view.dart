@@ -46,15 +46,12 @@ class WrapChipView extends StatelessWidget {
               children: const [
                 CustomChoiceChip(
                   content: "Disable",
-                  selected: false,
                 ),
                 CustomChoiceChip(
                   content: "Small",
-                  selected: true,
                 ),
                 CustomChoiceChip(
                   content: "Large",
-                  selected: true,
                 )
               ],
             ),
@@ -70,15 +67,12 @@ class WrapChipView extends StatelessWidget {
               children: const [
                 CustomInputChip(
                   content: "Disable",
-                  selected: false,
                 ),
                 CustomInputChip(
                   content: "IOS",
-                  selected: false,
                 ),
                 CustomInputChip(
                   content: "Android",
-                  selected: true,
                 )
               ],
             )
@@ -112,39 +106,72 @@ class CustomChip extends StatelessWidget {
   }
 }
 
-class CustomChoiceChip extends StatelessWidget {
-  const CustomChoiceChip(
-      {super.key, required this.content, required this.selected});
+class CustomChoiceChip extends StatefulWidget {
+  const CustomChoiceChip({super.key, required this.content});
 
   final String content;
-  final bool selected;
+
+  @override
+  State<CustomChoiceChip> createState() => _CustomChoiceChipState();
+}
+
+class _CustomChoiceChipState extends State<CustomChoiceChip> {
+  late bool _selected;
+
+  @override
+  void initState() {
+    super.initState();
+    _selected = false;
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WrapChipCubit, WrapChipState>(builder: (context, state) {
       return ChoiceChip(
-        backgroundColor: Colors.grey[content != "Disable" ? 300 : 200],
+        backgroundColor: Colors.grey[widget.content != "Disable" ? 300 : 200],
         side: BorderSide.none,
-        label: Text(content),
-        labelStyle:
-            TextStyle(color: content == "Disable" ? Colors.grey[400] : null),
+        label: Text(widget.content),
+        labelStyle: TextStyle(
+            color: widget.content == "Disable" ? Colors.grey[400] : null),
         elevation: state.elevation ? 20 : 0,
         avatar: state.avatar ? const Icon(Icons.account_circle) : null,
         shape: state.shape,
         shadowColor: Colors.black,
-        selected: false,
-        onSelected: (value) {},
+        selected: _selected,
+        onSelected: widget.content == "Disable"
+            ? null
+            : (value) {
+                setState(() {
+                  _selected = value;
+                });
+              },
+        selectedColor: Colors.grey,
+        disabledColor: Colors.grey[200],
       );
     });
   }
 }
 
-class CustomInputChip extends StatelessWidget {
-  const CustomInputChip(
-      {super.key, required this.content, required this.selected});
+class CustomInputChip extends StatefulWidget {
+  const CustomInputChip({
+    super.key,
+    required this.content,
+  });
 
   final String content;
-  final bool selected;
+
+  @override
+  State<CustomInputChip> createState() => _CustomInputChipState();
+}
+
+class _CustomInputChipState extends State<CustomInputChip> {
+  late bool _selected;
+
+  @override
+  void initState() {
+    super.initState();
+    _selected = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,15 +179,21 @@ class CustomInputChip extends StatelessWidget {
       return InputChip(
         backgroundColor: Colors.grey[300],
         side: BorderSide.none,
-        label: Text(content),
+        label: Text(widget.content),
         elevation: state.elevation ? 20 : 0,
         avatar: state.avatar ? const Icon(Icons.account_circle) : null,
         shape: state.shape,
         shadowColor: Colors.black,
         disabledColor: Colors.grey[200],
-        selected: selected,
+        selected: _selected,
         selectedColor: Colors.grey,
-        onSelected: content == "Disable" ? null : (value) {},
+        onSelected: widget.content == "Disable"
+            ? null
+            : (value) {
+                setState(() {
+                  _selected = value;
+                });
+              },
         deleteIcon: const Icon(Icons.delete),
         onDeleted: state.deleteIcon ? () {} : null,
       );
