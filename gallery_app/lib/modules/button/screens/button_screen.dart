@@ -145,7 +145,7 @@ class ButtonScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ClipPath(
-                  clipper: MaterialButtonClip(),
+                  clipper: CustomButtonClip(),
                   child: MaterialButton(
                     onPressed: () {},
                     color: Colors.grey,
@@ -156,7 +156,7 @@ class ButtonScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ClipPath(
-                  clipper: MaterialButtonClip(),
+                  clipper: CustomButtonClip(),
                   child: MaterialButton(
                     onPressed: () {},
                     color: Colors.grey,
@@ -248,7 +248,7 @@ class _SelectButtonCustomState extends State<SelectButtonCustom> {
   }
 }
 
-class MaterialButtonClip extends CustomClipper<Path> {
+class CustomButtonClip extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
