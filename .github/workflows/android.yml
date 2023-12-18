@@ -27,13 +27,13 @@ jobs:
 
 
 
-      # - name: Add secret
-      #   working-directory: ${{env.working-directory}}
-      #   run: echo ${{secrets.FIREBASE_KEY}} | base64 -d > deploy_firebase_gallery-app-d2d7c-3e0b117a0f00.json
+      - name: Add secret
+        working-directory: ${{env.working-directory}}
+        run: echo ${{secrets.FIREBASE_KEY}} | base64 -d > deploy_firebase_gallery-app-d2d7c-3e0b117a0f00.json
 
-      # - name: Add key properties
-      #   working-directory: ${{env.working-directory}}
-      #   run: echo ${{secrets.PROPERTIES_KEY}} | base64 -d > key.properties
+      - name: Add key properties
+        working-directory: ${{env.working-directory}}
+        run: echo ${{secrets.PROPERTIES_KEY}} | base64 -d > key.properties
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
@@ -42,28 +42,44 @@ jobs:
           build-root-directory: ${{env.working-directory}}
           cache-disabled: true
           
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          cache: true
+      # - name: Set up Flutter
+      #   uses: subosito/flutter-action@v2
+      #   with:
+      #     cache: true
 
-      
+      # - name: Test
+      #   working-directory: ${{env.working-directory}}
+      #   run: |
+      #     echo
+      #     pwd
+
+      #     echo
+      #     ls
+
+      #     echo
+      #     echo ls root
+      #     ls ../
+
+          
+      #     echo
+      #     echo ls root2
+      #     ls -R ../../
+        
       # - name: Distribute firebase
       #   working-directory: ${{env.working-directory}}
       #   run: fastlane distribute
      
-      - name: test
-        working-directory: ${{env.working-directory}}
-        run: ls
+      - name: Make gradlew executable
+        run: chmod +x gallery_app/android/gradlew
 
-      - name: build release 
-        working-directory: ${{env.working-directory}}
-        run: flutter build apk --release
-        
-      - name: upload artifact to Firebase App Distribution
+      - name: Execute Gradle command - assembleDebug
+        run: gallery_app/android/gradlew assembleDebug
+
+      - name: Upload Artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: 1:334203700014:android:64d8c85e0269f15bfff0bf
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_KEY }}
-          groups: testers
-          file: gallery_app/build/app/outputs/apk/release/app-release.apk
+          groups: tester
+          file: gallery_app/build/app/outputs/apk/debug/app-debug.apk
+    
