@@ -35,13 +35,16 @@ class RowColumnPage extends StatelessWidget {
             foregroundColor: Colors.white,
             titleTextStyle: const TextStyle(fontSize: 25),
           ),
-          body: Container(
-            color: Colors.grey[100],
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  state.type == 'Row'
-                      ? Container(
+          body: Column(
+              mainAxisSize: MainAxisSize.max,
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (state.type == 'Row')
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Container(
                           padding: const EdgeInsets.all(10),
                           color: Colors.yellow,
                           child: Row(
@@ -58,30 +61,35 @@ class RowColumnPage extends StatelessWidget {
                               // SizedBox(width: 20),
                               const Item(size: 30),
                             ],
-                          ))
-                      : Expanded(
-                          child: Container(
-                              padding: const EdgeInsets.all(10),
-                              color: Colors.yellow,
-                              child: Column(
-                                textBaseline: state.textBaseline,
-                                textDirection: state.textDirection,
-                                crossAxisAlignment: state.crossAxisAlignment,
-                                mainAxisSize: state.mainAxisSize,
-                                mainAxisAlignment: state.mainAxisAlignment,
-                                verticalDirection: state.verticalDirection,
-                                children: [
-                                  const Item(size: 30),
-                                  // SizedBox(width: 20),
-                                  Item(size: 50, type: state.type),
-                                  // SizedBox(width: 20),
-                                  const Item(size: 30),
-                                ],
-                              )),
-                        ),
-                  const RowColumnMenu()
-                ]),
-          ),
+                          )),
+                    ),
+                  )
+                else
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Container(
+                          padding: const EdgeInsets.all(10),
+                          color: Colors.yellow,
+                          child: Column(
+                            textBaseline: state.textBaseline,
+                            textDirection: state.textDirection,
+                            crossAxisAlignment: state.crossAxisAlignment,
+                            mainAxisSize: state.mainAxisSize,
+                            mainAxisAlignment: state.mainAxisAlignment,
+                            verticalDirection: state.verticalDirection,
+                            children: [
+                              const Item(size: 30),
+                              // SizedBox(width: 20),
+                              Item(size: 50, type: state.type),
+                              // SizedBox(width: 20),
+                              const Item(size: 30),
+                            ],
+                          )),
+                    ),
+                  ),
+                const RowColumnMenu()
+              ]),
         ),
       );
     });

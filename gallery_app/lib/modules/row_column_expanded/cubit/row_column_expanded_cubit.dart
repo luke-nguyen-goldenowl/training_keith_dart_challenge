@@ -2,7 +2,7 @@ import 'package:gallery_app/modules/row_column_expanded/model/row_column_expande
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RowColumnCubit extends Cubit<RowColumnState> {
-  RowColumnCubit() : super(RowColumnState());
+  RowColumnCubit() : super(RowColumnState.ds());
 
   // mainAxisSize,
   //     mainAxisAlignment,

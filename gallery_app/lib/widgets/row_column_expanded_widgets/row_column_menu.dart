@@ -57,7 +57,7 @@ class RowColumnMenu extends StatelessWidget {
                   ),
                   DropdownButton(
                     value: state.mainAxisSize,
-                    items: [MainAxisSize.max, MainAxisSize.min].map((value) {
+                    items: MainAxisSize.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
                         child: Text(value.toString().split('.')[1]),
@@ -78,14 +78,7 @@ class RowColumnMenu extends StatelessWidget {
                   ),
                   DropdownButton(
                     value: state.mainAxisAlignment,
-                    items: [
-                      MainAxisAlignment.center,
-                      MainAxisAlignment.end,
-                      MainAxisAlignment.start,
-                      MainAxisAlignment.spaceAround,
-                      MainAxisAlignment.spaceBetween,
-                      MainAxisAlignment.spaceEvenly
-                    ].map((value) {
+                    items: MainAxisAlignment.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
                         child: Text(value.toString().split('.')[1]),
@@ -106,13 +99,7 @@ class RowColumnMenu extends StatelessWidget {
                   ),
                   DropdownButton(
                     value: state.crossAxisAlignment,
-                    items: [
-                      CrossAxisAlignment.center,
-                      CrossAxisAlignment.baseline,
-                      CrossAxisAlignment.end,
-                      CrossAxisAlignment.start,
-                      CrossAxisAlignment.stretch
-                    ].map((value) {
+                    items: CrossAxisAlignment.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
                         child: Text(value.toString().split('.')[1]),
@@ -133,8 +120,7 @@ class RowColumnMenu extends StatelessWidget {
                   ),
                   DropdownButton(
                     value: state.verticalDirection,
-                    items: [VerticalDirection.down, VerticalDirection.up]
-                        .map((value) {
+                    items: VerticalDirection.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
                         child: Text(value.toString().split('.')[1]),
@@ -155,7 +141,7 @@ class RowColumnMenu extends StatelessWidget {
                   ),
                   DropdownButton(
                     value: state.textDirection,
-                    items: [TextDirection.ltr, TextDirection.rtl].map((value) {
+                    items: TextDirection.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
                         child: Text(value.toString().split('.')[1]),
@@ -176,8 +162,7 @@ class RowColumnMenu extends StatelessWidget {
                   ),
                   DropdownButton(
                     value: state.textBaseline,
-                    items: [TextBaseline.ideographic, TextBaseline.alphabetic]
-                        .map((value) {
+                    items: TextBaseline.values.map((value) {
                       return DropdownMenuItem(
                         value: value,
                         child: Text(value.toString().split('.')[1]),

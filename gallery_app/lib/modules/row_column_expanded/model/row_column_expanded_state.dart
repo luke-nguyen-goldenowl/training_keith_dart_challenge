@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
 
 class RowColumnState {
-  dynamic mainAxisSize = MainAxisSize.max,
-      mainAxisAlignment = MainAxisAlignment.start,
-      crossAxisAlignment = CrossAxisAlignment.center,
-      verticalDirection = VerticalDirection.down,
-      textDirection = TextDirection.ltr,
-      textBaseline = TextBaseline.ideographic,
-      type = 'Row';
+  MainAxisSize mainAxisSize;
+  MainAxisAlignment mainAxisAlignment;
+  CrossAxisAlignment crossAxisAlignment;
+  VerticalDirection verticalDirection;
+  TextDirection textDirection;
+  TextBaseline textBaseline;
+  String type;
 
-  RowColumnState();
+  RowColumnState(
+    this.mainAxisSize,
+    this.mainAxisAlignment,
+    this.crossAxisAlignment,
+    this.verticalDirection,
+    this.textDirection,
+    this.textBaseline,
+    this.type,
+  );
 
-  RowColumnState.parameter(
-      this.mainAxisSize,
-      this.mainAxisAlignment,
-      this.crossAxisAlignment,
-      this.verticalDirection,
-      this.textDirection,
-      this.textBaseline,
-      this.type);
+  factory RowColumnState.ds() {
+    return RowColumnState(
+        MainAxisSize.max,
+        MainAxisAlignment.start,
+        CrossAxisAlignment.center,
+        VerticalDirection.down,
+        TextDirection.ltr,
+        TextBaseline.ideographic,
+        'Row');
+  }
+  // RowColumnState.parameter(
+  //   );
 
   RowColumnState copyWith({
     dynamic mainAxisSize,
@@ -29,7 +41,7 @@ class RowColumnState {
     textBaseline,
     type,
   }) {
-    return RowColumnState.parameter(
+    return RowColumnState(
         mainAxisSize ?? this.mainAxisSize,
         mainAxisAlignment ?? this.mainAxisAlignment,
         crossAxisAlignment ?? this.crossAxisAlignment,
