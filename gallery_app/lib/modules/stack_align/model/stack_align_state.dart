@@ -23,7 +23,11 @@ class StackAlginState {
   }
 
   StackAlginState copyWith({dynamic alignment, textDirection, stackFit, clip}) {
-    return StackAlginState(alignment ?? this.alignment, clip ?? this.clip,
-        stackFit ?? this.stackFit, textDirection ?? this.textDirection);
+    return StackAlginState(
+      alignment ?? this.alignment,
+      textDirection ?? this.textDirection,
+      stackFit ?? this.stackFit,
+      clip ?? this.clip,
+    );
   }
 }
