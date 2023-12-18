@@ -12,7 +12,7 @@ jobs:
   build:
 
     name: Building and distributing app
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     env: 
       working-directory: gallery_app/android
@@ -69,11 +69,11 @@ jobs:
       #   working-directory: ${{env.working-directory}}
       #   run: fastlane distribute
      
-      - name: Make gradlew executable
-        run: chmod +x gallery_app/android/gradlew
+    
 
-      - name: Execute Gradle command - assembleDebug
-        run: gallery_app/android/gradlew assembleDebug
+      - name: build release
+        working-directory: ${{env.working-directory}}
+        run: flutter build apk --release
 
       - name: Upload Artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -81,5 +81,5 @@ jobs:
           appId: 1:334203700014:android:64d8c85e0269f15bfff0bf
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_KEY }}
           groups: tester
-          file: gallery_app/build/app/outputs/apk/debug/app-debug.apk
+          file: gallery_app/build/app/outputs/apk/release/app-release.apk
     
