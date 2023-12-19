@@ -82,42 +82,6 @@ class ImageTitleAppBarScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                // FlexibleSpaceBar(
-                //   stretchModes: const [
-                //     StretchMode.zoomBackground,
-                //     // StretchMode.fadeTitle,
-                //     // StretchMode.blurBackground
-                //   ],
-                //   expandedTitleScale: 1,
-                //   title: const Text(
-                //     "Super Lucky Mr. Fortune Teller",
-                //     style: TextStyle(
-                //         color: Colors.white,
-                //         fontSize: 18,
-                //         fontWeight: FontWeight.w500),
-                //   ),
-                //   background: Stack(
-                //     fit: StackFit.expand,
-                //     children: [
-                //       Image.asset(
-                //         image,
-                //         fit: BoxFit.cover,
-                //       ),
-                //       Container(
-                //         decoration: BoxDecoration(
-                //           gradient: LinearGradient(
-                //             begin: Alignment.bottomCenter,
-                //             end: Alignment.topCenter,
-                //             colors: [
-                //               Colors.black.withOpacity(0.8),
-                //               Colors.transparent,
-                //             ],
-                //           ),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
               ),
               SliverPersistentHeader(
                 delegate: MySliverPersistentHeaderDelegate(
