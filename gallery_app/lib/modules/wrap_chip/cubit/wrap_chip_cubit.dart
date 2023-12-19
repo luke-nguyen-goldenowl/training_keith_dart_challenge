@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gallery_app/modules/wrap_chip/model/wrap_chip_state.dart';
 
 class WrapChipCubit extends Cubit<WrapChipState> {
-  WrapChipCubit() : super(WrapChipState());
+  WrapChipCubit() : super(WrapChipState.ds());
 
   void setElevation(value) {
     emit(state.copyWith(elevation: value));
@@ -26,5 +26,13 @@ class WrapChipCubit extends Cubit<WrapChipState> {
 
   void setShape(value) {
     emit(state.copyWith(shape: value));
+  }
+
+  void setActiveInput(value) {
+    emit(state.copyWith(activeInput: value));
+  }
+
+  void setActiveChoice(value) {
+    emit(state.copyWith(activeChoice: value));
   }
 }

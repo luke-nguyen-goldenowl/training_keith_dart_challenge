@@ -106,44 +106,32 @@ class CustomChip extends StatelessWidget {
   }
 }
 
-class CustomChoiceChip extends StatefulWidget {
+class CustomChoiceChip extends StatelessWidget {
   const CustomChoiceChip({super.key, required this.content});
 
   final String content;
 
   @override
-  State<CustomChoiceChip> createState() => _CustomChoiceChipState();
-}
-
-class _CustomChoiceChipState extends State<CustomChoiceChip> {
-  late bool _selected;
-
-  @override
-  void initState() {
-    super.initState();
-    _selected = false;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<WrapChipCubit, WrapChipState>(builder: (context, state) {
+      final WrapChipCubit wrapChipCubit =
+          BlocProvider.of<WrapChipCubit>(context);
       return ChoiceChip(
-        backgroundColor: Colors.grey[widget.content != "Disable" ? 300 : 200],
+        backgroundColor: Colors.grey[content != "Disable" ? 300 : 200],
         side: BorderSide.none,
-        label: Text(widget.content),
-        labelStyle: TextStyle(
-            color: widget.content == "Disable" ? Colors.grey[400] : null),
+        label: Text(content),
+        labelStyle:
+            TextStyle(color: content == "Disable" ? Colors.grey[400] : null),
         elevation: state.elevation ? 20 : 0,
         avatar: state.avatar ? const Icon(Icons.account_circle) : null,
         shape: state.shape,
         shadowColor: Colors.black,
-        selected: _selected,
-        onSelected: widget.content == "Disable"
+        selected: state.activeChoice == content,
+        onSelected: content == "Disable"
             ? null
             : (value) {
-                setState(() {
-                  _selected = value;
-                });
+                wrapChipCubit.setActiveChoice(
+                    !value && state.activeChoice == content ? "" : content);
               },
         selectedColor: Colors.grey,
         disabledColor: Colors.grey[200],
@@ -152,7 +140,7 @@ class _CustomChoiceChipState extends State<CustomChoiceChip> {
   }
 }
 
-class CustomInputChip extends StatefulWidget {
+class CustomInputChip extends StatelessWidget {
   const CustomInputChip({
     super.key,
     required this.content,
@@ -161,38 +149,26 @@ class CustomInputChip extends StatefulWidget {
   final String content;
 
   @override
-  State<CustomInputChip> createState() => _CustomInputChipState();
-}
-
-class _CustomInputChipState extends State<CustomInputChip> {
-  late bool _selected;
-
-  @override
-  void initState() {
-    super.initState();
-    _selected = false;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<WrapChipCubit, WrapChipState>(builder: (context, state) {
+      final WrapChipCubit wrapChipCubit =
+          BlocProvider.of<WrapChipCubit>(context);
       return InputChip(
         backgroundColor: Colors.grey[300],
         side: BorderSide.none,
-        label: Text(widget.content),
+        label: Text(content),
         elevation: state.elevation ? 20 : 0,
         avatar: state.avatar ? const Icon(Icons.account_circle) : null,
         shape: state.shape,
         shadowColor: Colors.black,
         disabledColor: Colors.grey[200],
-        selected: _selected,
+        selected: state.activeInput == content,
         selectedColor: Colors.grey,
-        onSelected: widget.content == "Disable"
+        onSelected: content == "Disable"
             ? null
             : (value) {
-                setState(() {
-                  _selected = value;
-                });
+                wrapChipCubit.setActiveInput(
+                    !value && state.activeInput == content ? "" : content);
               },
         deleteIcon: const Icon(Icons.delete),
         onDeleted: state.deleteIcon ? () {} : null,
