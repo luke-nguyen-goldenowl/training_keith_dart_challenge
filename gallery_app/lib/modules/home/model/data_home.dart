@@ -44,7 +44,7 @@ List<DataHome> listData = [
     describe: 'Scrolling list layout',
   ),
   DataHome(
-    routeName: RoutesName.customBoxShape,
+    routeName: RoutesName.container,
     title: "Card",
     icon: Icons.view_carousel_outlined,
     describe: 'Cards with rounded corners and decoration,',
@@ -57,7 +57,7 @@ List<DataHome> listData = [
         'A single fixed-height row that typically contains some text as well as a leading or trailing icon,',
   ),
   DataHome(
-    routeName: RoutesName.container,
+    routeName: RoutesName.home,
     title: "Alert",
     icon: Icons.tab,
     describe: 'Alerts, SnackBar & Tooltip',
@@ -87,5 +87,11 @@ List<DataHome> listData = [
     icon: Icons.copy,
     describe:
         'A widget that positions its children relative to the edges of its box',
+  ),
+  DataHome(
+    routeName: RoutesName.customBoxShape,
+    title: "Custom shape",
+    icon: Icons.star_outline,
+    describe: 'A ticket widget with custom shape',
   ),
 ];
