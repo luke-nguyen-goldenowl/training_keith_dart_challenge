@@ -97,3 +97,6 @@ flutter:
       fonts:
         - asset: lib/assets/fonts/Blinker/Blinker-Bold.ttf
 
+  assets:
+    - lib/assets/images/image.avif
+
